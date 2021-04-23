@@ -110,7 +110,7 @@ class Window(QMainWindow):
         self.gui.graphWidget.mousePressEvent = self.mouse_press_event
 
     """
-    Generates data
+    Generates data. Formula from an individual assignment!
     """
 
     def generate_data(self):
@@ -119,10 +119,11 @@ class Window(QMainWindow):
         deviation_val = self.gui.deviation_val.value()
         self.points = []
         for i in range(points_num):
-            self.points.append([0.5 * math.cos(4 * math.pi * (i / points_num)) +  # 0.7, 6
+            # Formula from an individual assignment
+            self.points.append([0.7 * math.cos(6 * math.pi * (i / points_num)) +
                                 random.normalvariate(0, deviation_val),
 
-                                0.5 * math.sin(4 * math.pi * (i / points_num)) +  # 0.5, 4
+                                0.5 * math.sin(4 * math.pi * (i / points_num)) +
                                 random.normalvariate(0, deviation_val),
 
                                 -1 + 2 * i / points_num + random.normalvariate(0, deviation_val)])
