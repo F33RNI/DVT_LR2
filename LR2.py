@@ -31,6 +31,8 @@ import random
 import sys
 
 import matplotlib.pyplot as plt
+import pyqtgraph as pg
+import pyqtgraph.exporters
 import numpy as np
 from PyQt5 import uic, QtGui, QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem
@@ -83,6 +85,7 @@ class Window(QMainWindow):
         self.gui.btn_save_data.clicked.connect(self.save_data)
         self.gui.btn_load_data.clicked.connect(self.load_data)
         self.gui.brush_size.valueChanged.connect(self.draw_points)
+        self.gui.btn_save_screenshot.clicked.connect(self.save_image)
 
         # Initialize charts and tables
         self.init_chart()
@@ -145,6 +148,14 @@ class Window(QMainWindow):
         self.show_on_table()
         self.gui.btn_save_data.setEnabled(True)
         print('Data generated.')
+
+    def save_image(self):
+        """
+        Saves screenshot from the pyQtGraph
+        :return:
+        """
+        exporter = pg.exporters.ImageExporter(self.gui.graphWidget.plotItem)
+        exporter.export(self.gui.line_image_dir.text() + 'image.png')
 
     """
     Shows points in table
